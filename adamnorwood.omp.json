@@ -1,0 +1,67 @@
+ {
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "light-blue" : "#66d9ef",
+    "hotpink"    : "#f92672",
+    "yellow"     : "#ddbb88",
+    "red"        : "#e63d5b",
+    "green"      : "#a6e22e",
+    "lilac"      : "#a289b1"
+  },
+  "console_title": true,
+  "console_title_style": "template",
+  "console_title_template": "{{.UserName}}@{{.HostName}} in {{.PWD}}",
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "path",
+          "foreground": "p:light-blue",
+          "properties": {
+            "style": "full",
+            "template": "{{ .Path }}  "
+          },
+          "style": "plain"
+        },
+        {
+          "type": "git",
+          "foreground": "p:lilac",
+          "properties": {
+            "fetch_status": true,
+            "fetch_stash_count": true,
+            "branch_icon": "\ufb2b ",
+            "template": "{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}{{ else }}<p:green> \uf00c</>{{ end }} {{ if .Working.Changed }}👻 {{ end }}{{ if .Staging.Changed }}<p:yellow>\ufb4e </>{{ end }}{{ if gt .StashCount 0}}🍥{{ end }} {{ if gt .Ahead 0}}<p:green> \uf0aa</>{{ end }}{{ if gt .Behind 0}}<p:red> \uf0ab</>{{ end}}"
+          },
+          "style": "powerline"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "p:red",
+          "properties": {
+            "template": "\ufb80 "
+          },
+          "style": "plain",
+          "type": "root"
+        },
+        {
+          "foreground": "p:hotpink",
+          "properties": {
+            "template": "\uf553 "
+          },
+          "style": "plain",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "version": 1
+}
