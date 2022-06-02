@@ -1,19 +1,16 @@
-# search current directory, home directory, and www projects folder
-# (via http://weblog.bocoup.com/shell-hacking-cdpath/)
-cdpath=(. $HOME/www/)
-
 # Run Oh My Posh prompt.
+# See: https://ohmyposh.dev/
 eval "$(oh-my-posh --init --shell zsh --config $HOME/.zsh/adamnorwood.omp.json)"
 
 # Aliases to make life easier.
 alias ...='cd ../../'
 alias ....='cd ../../../'
+alias -g ...='../../'
 alias dc='docker-compose'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
 alias gb='git branch'
 alias gbd='git branch -d'
 alias gbm='git branch --merge'
+alias gcb='git checkout -b'
 alias gco='git checkout'
 alias grep='grep --color=auto'
 alias h='history 1'
@@ -31,6 +28,12 @@ alias utwebtest='ssh utw10005@panel.utweb.utexas.edu'
 alias wildgift='ssh adam@198.58.113.194'
 alias wpd='docker-compose -f ~/docker/utweb/docker-compose.yml exec php-fpm wp --allow-root --path="/app/law.utexas.test/wp/"'
 
+# Search current directory, home directory, and www projects folder
+# See: http://weblog.bocoup.com/shell-hacking-cdpath/
+cdpath=(. $HOME/www/)
+
+# Set up Zsh options. There are many of these that can be tweaked!
+# See: https://zsh.sourceforge.io/Doc/Release/Options.html
 setopt alwaystoend
 setopt appendhistory
 setopt autocd
@@ -66,15 +69,18 @@ bindkey '\e[F' end-of-line
 bindkey '[C' forward-word
 bindkey '[D' backward-word
 
-# A handy git diff that ignores JS and CSS source maps and compiled files.
+# A handy git diff that ignores JS and CSS sourcemaps and compiled files.
 function gdiff () {
     git diff $1 ':!*.map' ':!*.css' ':!*.min.*'
 }
 
-export EDITOR='code'
+# Mostly here to add homebrew and PHP 7.3 binaries to my PATH.
 export PATH="$PATH:/usr/local/opt/php@7.3/bin:/usr/local/opt/php@7.3/sbin:/usr/local/sbin"
 
-# Set up zany color schemes.
+# Use VS Code as the designated editor (for git commit messages, etc.)
+export EDITOR='code'
+
+# Set up color for tools that use termcap, like less and man.
 export LESS_TERMCAP_mb=$(print -P "%F{cyan}") \
     LESS_TERMCAP_md=$(print -P "%B%F{cyan}") \
     LESS_TERMCAP_me=$(print -P "%f%b") \
@@ -83,14 +89,18 @@ export LESS_TERMCAP_mb=$(print -P "%F{cyan}") \
     LESS_TERMCAP_us=$(print -P "%U%F{yellow}") \
     LESS_TERMCAP_ue=$(print -P "%f%u")
 
-# LS colors, made with http://geoff.greer.fm/lscolors/
+# Add files and directories color when running ls
+# There's a generator here: http://geoff.greer.fm/lscolors/
 export CLICOLOR=1
 export LS_COLORS='di=36:ln=1;35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 export GREP_COLOR='1;35;40'
 
 # Run zsh-syntax-highlighting (installed via homebrew).
+# See: https://github.com/zsh-users/zsh-syntax-highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Trick out the zsh completion engine.
+# See: https://www.csse.uwa.edu.au/programming/linux/zsh-doc/zsh_23.html
 # The following lines were added by compinstall
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _complete _ignored _approximate
@@ -110,5 +120,9 @@ zstyle ':completion:*' verbose true
 autoload -Uz compinit
 compinit
 
+# See: https://iterm2.com/documentation-shell-integration.html
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Just adding a fun image for when the shell first opens. Why? Because I can.
+# Require imgcat: https://github.com/eddieantonio/imgcat
 imgcat ~/Pictures/bubble-bobble.png
