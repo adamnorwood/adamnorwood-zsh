@@ -18,15 +18,7 @@ alias hs='history | grep'
 alias hsi='history | grep -i'
 alias ip='ifconfig | egrep -o "inet ([0-9]{1,3}(\.)?){0,4}" | tr -d "\040\011inet"'
 alias l='ls -lAh'
-alias recents='defaults delete .GlobalPreferences NSNavRecentPlaces'
 alias sizes='du -hd1|gsort -hr'
-alias utweb='ssh anorwood@panel.utweb.utexas.edu'
-alias utweberrors='ssh -t anorwood@panel.utweb.utexas.edu "~/bin/utweberrors utw10007"'
-alias utwebprod='ssh utw10007@panel.utweb.utexas.edu'
-alias utwebqual='ssh utw10006@panel.utweb.utexas.edu'
-alias utwebtest='ssh utw10005@panel.utweb.utexas.edu'
-alias wildgift='ssh adam@198.58.113.194'
-alias wpd='docker-compose -f ~/docker/utweb/docker-compose.yml exec php-fpm wp --allow-root --path="/app/law.utexas.test/wp/"'
 
 # Search current directory, home directory, and www projects folder
 # See: http://weblog.bocoup.com/shell-hacking-cdpath/
@@ -125,4 +117,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Just adding a fun image for when the shell first opens. Why? Because I can.
 # Require imgcat: https://github.com/eddieantonio/imgcat
-imgcat ~/Pictures/bubble-bobble.png
+# imgcat ~/Pictures/bubble-bobble.png
