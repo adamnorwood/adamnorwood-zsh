@@ -1,40 +1,29 @@
- {
+{
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-  "palette": {
-    "light-blue" : "#66d9ef",
-    "hotpink"    : "#f92672",
-    "yellow"     : "#ddbb88",
-    "red"        : "#e63d5b",
-    "green"      : "#a6e22e",
-    "lilac"      : "#a289b1"
-  },
-  "console_title": true,
-  "console_title_style": "template",
-  "console_title_template": "{{.UserName}}@{{.HostName}} in {{.PWD}}",
   "blocks": [
     {
       "alignment": "left",
       "newline": true,
       "segments": [
         {
-          "type": "path",
           "foreground": "p:light-blue",
           "properties": {
-            "style": "full",
-            "template": "{{ .Path }}  "
+            "style": "full"
           },
-          "style": "plain"
+          "style": "plain",
+          "template": "{{ .Path }}  ",
+          "type": "path"
         },
         {
-          "type": "git",
           "foreground": "p:lilac",
           "properties": {
-            "fetch_status": true,
-            "fetch_stash_count": true,
             "branch_icon": "\ufb2b ",
-            "template": "{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}{{ else }}<p:green> \uf00c</>{{ end }} {{ if .Working.Changed }}👻 {{ end }}{{ if .Staging.Changed }}<p:yellow>\ufb4e </>{{ end }}{{ if gt .StashCount 0}}🍥{{ end }} {{ if gt .Ahead 0}}<p:green> \uf0aa</>{{ end }}{{ if gt .Behind 0}}<p:red> \uf0ab</>{{ end}}"
+            "fetch_stash_count": true,
+            "fetch_status": true
           },
-          "style": "powerline"
+          "style": "powerline",
+          "template": "{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}{{ else }}<p:green> \uf00c</>{{ end }} {{ if .Working.Changed }}👻 {{ end }}{{ if .Staging.Changed }}<p:yellow>\ufb4e </>{{ end }}{{ if gt .StashCount 0}}🍥{{ end }} {{ if gt .Ahead 0}}<p:green> \uf0aa</>{{ end }}{{ if gt .Behind 0}}<p:red> \uf0ab</>{{ end}}",
+          "type": "git"
         }
       ],
       "type": "prompt"
@@ -45,23 +34,28 @@
       "segments": [
         {
           "foreground": "p:red",
-          "properties": {
-            "template": "\ufb80 "
-          },
           "style": "plain",
+          "template": "\ufb80 ",
           "type": "root"
         },
         {
           "foreground": "p:hotpink",
-          "properties": {
-            "template": "\uf553 "
-          },
           "style": "plain",
+          "template": "\uf553 ",
           "type": "text"
         }
       ],
       "type": "prompt"
     }
   ],
-  "version": 1
+  "console_title_template": "{{.UserName}}@{{.HostName}} in {{.PWD}}",
+  "palette": {
+    "green": "#a6e22e",
+    "hotpink": "#f92672",
+    "light-blue": "#66d9ef",
+    "lilac": "#a289b1",
+    "red": "#e63d5b",
+    "yellow": "#ddbb88"
+  },
+  "version": 2
 }
