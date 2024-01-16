@@ -62,6 +62,7 @@ setopt sharehistory
 # Tweak some history options.
 export HISTSIZE=10000
 export SAVEHIST=10000
+export HISTFILE=~/.zsh/.zsh_history
 
 # Set up zsh up/down/home/end key search completions.
 autoload -U history-search-end
