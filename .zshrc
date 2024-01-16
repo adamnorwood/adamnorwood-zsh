@@ -1,3 +1,13 @@
+# Add Homebrew to the PATH.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Add PHP 8.1 from Homebrew to the PATH.
+export PATH="/opt/homebrew/opt/php@8.1/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.1/sbin:$PATH"
+
+# Add brew's version of curl to the PATH
+export PATH="$(brew --prefix curl)/bin:$PATH"
+
 # Run Oh My Posh prompt.
 # See: https://ohmyposh.dev/
 eval "$(oh-my-posh --init --shell zsh --config $HOME/.zsh/adamnorwood.omp.json)"
@@ -14,8 +24,8 @@ alias gcb='git checkout -b'
 alias gco='git checkout'
 alias grep='grep --color=auto'
 alias h='history 1'
-alias hs='history | grep'
-alias hsi='history | grep -i'
+alias hs='history 1| grep'
+alias hsi='history 1| grep -i'
 alias ip='ifconfig | egrep -o "inet ([0-9]{1,3}(\.)?){0,4}" | tr -d "\040\011inet"'
 alias l='ls -lAh'
 alias sizes='du -hd1|gsort -hr'
@@ -49,6 +59,10 @@ setopt pushdignoredups
 setopt pushdminus
 setopt sharehistory
 
+# Tweak some history options.
+export HISTSIZE=10000
+export SAVEHIST=10000
+
 # Set up zsh up/down/home/end key search completions.
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
@@ -65,9 +79,6 @@ bindkey '[D' backward-word
 function gdiff () {
     git diff $1 ':!*.map' ':!*.css' ':!*.min.*'
 }
-
-# Mostly here to add homebrew and PHP 7.3 binaries to my PATH.
-export PATH="$PATH:/usr/local/opt/php@7.3/bin:/usr/local/opt/php@7.3/sbin:/usr/local/sbin"
 
 # Use VS Code as the designated editor (for git commit messages, etc.)
 export EDITOR='code'
